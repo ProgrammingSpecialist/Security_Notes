@@ -43,3 +43,7 @@ ssh -MS /tmp/grey -O cancel student@10.50.28.200
 
 TO REMOVE Forward
 ssh -S /tmp/grey [placeholder] -O cancel -D 9050
+
+
+Exploit Vulnerability's
+https://www.exploit-db.com/
