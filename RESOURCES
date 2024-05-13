@@ -29,9 +29,17 @@ ssh -MS /tmp/grey student@10.50.28.200
 	creates a Master Socket
 	creates a socket file named /tmp/grey that will hold all information to get to that ip
 
+ssh -S /tmp/grey [placeholder] -O [options] -D 9050
+
+
+
+
 
 TO REMOVE TUNNEL
 
 ssh -MS /tmp/grey -O cancel student@10.50.28.200
 	will remove /tmp/grey socket file
 	will break down the connection
+
+TO REMOVE Forward
+ssh -S /tmp/grey [placeholder] -O cancel -D 9050
