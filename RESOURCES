@@ -23,3 +23,8 @@ Username:	STRE-502-M
 Password:	fyoRg030EaYZZiW
 
 Grey Host jump Box:	10.50.28.200
+
+
+ssh -MS /tmp/grey student@10.50.28.200
+	creates a Master Socket
+	creates a socket file named /tmp/grey that will hold all information to get to that ip
