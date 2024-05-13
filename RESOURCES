@@ -1,0 +1,11 @@
+windows:		10.50.26.140
+
+linux:			10.50.33.107
+
+stack #12
+
+xfreerdp /u:<username> /v:10.50.26.140 /dynamic-resolution +glyph-cache +clipboard
+
+username: STRN-M-502
+
+password: AsdFGHjkl;
