@@ -1,1 +1,85 @@
+ssh -MS /tmp/grey student@10.50.28.200
+	creates a Master Socket
+	creates a socket file named /tmp/grey that will hold all information to get to that ip
+
+ssh -S /tmp/grey LEGEND -O forward -D 9050
+ssh -S /tmp/grey LEGENDARY -O forward -L 1111:192.168.128.100:80 -L 2222:192.168.128.100:22 -L 3333:192.168.128.100:23
+
+verify connection
+	netstat -antlup
+	ss -ntlp
+
+
+
+
+
+PENETRATION TESTING
+
+	Phase 1: Mission Definition
+		Define mission goals and targets
+		Determine scope of mission
+		Define RoE
+	
+	Phase 2: Recon
+		Information gathering about the target through public sources
+			Open Source info gathering
+
+	Phase 3: Footprinting
+		Accumulate data through scanning and/or interaction with the target/target resources
+			Whats running on boxes
+			Services
+			Ports
+
+	Phase 4: Exploitation & Initial Access
+		Gain an initial foothold on network
+
+	Phase 5: Post-Exploitation
+		Establish persistence
+		Escalate privileges
+		Cover your tracks
+			remove logs
+		Exfiltrate target data
+
+	Phase 6: Document Mission
+		Document and report mission details
+
+
+Penetration Test Reporting
+	OP NOTES
+		Reasons to report
+		What to report
+		Screen captures
+
+	FORMAL REPORTING
+		Executive Summary
+		Technical Summary
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
