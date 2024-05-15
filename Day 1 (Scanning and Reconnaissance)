@@ -1,25 +1,10 @@
-Scanning and Reconnaissance
-	OPEN SOURCE
-		https://webbreacher.files.wordpress.com/2018/07/data-collection3.png?w=1136
 
-	Data Collection
-		Web Data
-			Cached Content, Analytics, Proxy Web Application, Command Line Interrogation
-		Sensitive Data
-			Business Data, Profiles, Non-Profits/Charities, Business Filings, Historical and Public Listings	
-		Publicly Accessible
-			Physical Addresses, Phone Numbers, Email Addresses, User Names, Search Engine Data, Web and Traffic Cameras, Wireless Access Point Data
-		Social Media
-			Twitter, Facebook, Instagram, People Searches, Registry and Wish Lists
-		Domain and IP Data
-			DNS Registration, IP Address Assignments, Geolocation Data, Whois
-
-	Hyper-Text Markup Language (HTML)
-		Standardized markup language for browser interpretation of webpages
-			Client-side interpretation (web browser)
-			Utilizes elements (identified by tags)
-			Typically redirects to another page for server-side interaction
-			Cascading Stylesheets (CSS) for page themeing
+Hyper-Text Markup Language (HTML)
+	Standardized markup language for browser interpretation of webpages
+		Client-side interpretation (web browser)
+		Utilizes elements (identified by tags)
+		Typically redirects to another page for server-side interaction
+		Cascading Stylesheets (CSS) for page themeing
 
 
 
@@ -50,74 +35,14 @@ Advanced Scanning Techniques
 	Host Discovery
 		Find hosts that are online
 			for i in {1..254} ;do (ping -c 1 192.168.28.$i | grep "bytes from" &) ;done
-						64 bytes from 192.168.28.1: icmp_seq=1 ttl=64 time=0.130 ms
-						64 bytes from 192.168.28.2: icmp_seq=1 ttl=63 time=24.3 ms
-							64 bytes from 192.168.28.97: icmp_seq=1 ttl=64 time=0.119 ms
-							64 bytes from 192.168.28.98: icmp_seq=1 ttl=63 time=0.680 ms
-							64 bytes from 192.168.28.100: icmp_seq=1 ttl=63 time=0.347 ms
-							64 bytes from 192.168.28.105: icmp_seq=1 ttl=63 time=0.333 ms
-							64 bytes from 192.168.28.111: icmp_seq=1 ttl=63 time=0.446 ms
-							64 bytes from 192.168.28.120: icmp_seq=1 ttl=63 time=0.360 ms
-						64 bytes from 192.168.28.129: icmp_seq=1 ttl=64 time=0.110 ms
-						64 bytes from 192.168.28.130: icmp_seq=1 ttl=63 time=0.720 ms
-	Port Enumeration
+
 		Find ports for each host that is online
 			proxychains nmap -Pn -T5 192.168.28.97,98,100,105,111,120 --max-rtt-timeout 100ms
-						Nmap scan report for 192.168.28.97
-						All 1000 scanned ports on 192.168.28.97 are closed
-						
-						Nmap scan report for 192.168.28.98
-						PORT   STATE SERVICE
-						53/tcp open  domain
-						
-						Nmap scan report for 192.168.28.100
-						PORT     STATE SERVICE
-						80/tcp   open  http
-						2222/tcp open  EtherNetIP-1
-						
-						Nmap scan report for 192.168.28.105
-						PORT     STATE SERVICE
-						21/tcp   open  ftp
-						23/tcp   open  telnet
-						2222/tcp open  EtherNetIP-1
-						
-						Nmap scan report for 192.168.28.111
-						PORT     STATE SERVICE
-						80/tcp   open  http
-						2222/tcp open  EtherNetIP-1
-						8080/tcp open  http-proxy
-						
-						Nmap scan report for 192.168.28.120
-						PORT     STATE SERVICE
-						4242/tcp open  vrml-multi-use
 
 	Port Interrogation
 		Find what service is running on each open/available port
 				nc each ip and port
-						Nmap scan report for 192.168.28.98
-						PORT   STATE SERVICE
-						53/tcp open  domain
-						
-						Nmap scan report for 192.168.28.100
-						PORT     STATE SERVICE
-						80/tcp   open  http
-						2222/tcp open  EtherNetIP-1			(ALT SSH)
-						
-						Nmap scan report for 192.168.28.105
-						PORT     STATE SERVICE
-						21/tcp   open  ftp
-						23/tcp   open  telnet
-						2222/tcp open  EtherNetIP-1			(ALT SSH)
-						
-						Nmap scan report for 192.168.28.111
-						PORT     STATE SERVICE
-						80/tcp   open  http
-						2222/tcp open  EtherNetIP-1			(ALT SSH)
-						8080/tcp open  http-proxy
-						
-						Nmap scan report for 192.168.28.120
-						PORT     STATE SERVICE
-						4242/tcp open  vrml-multi-use			(ALT SSH)
+
 
 
 Advanced Scanning Techniques
@@ -126,99 +51,10 @@ Advanced Scanning Techniques
 			/usr/share/nmap/scripts
 
 		proxychains nmap -Pn -T5 --script http-enum 192.168.28.97,98,100,105,111,120 --max-rtt-timeout 100ms
-			
-						Nmap scan report for 192.168.28.98
-						Host is up (0.00067s latency).
-						Not shown: 999 closed ports
-						PORT   STATE SERVICE
-						53/tcp open  domain
-						
-						Nmap scan report for 192.168.28.100
-						Host is up (0.00060s latency).
-						Not shown: 998 closed ports
-						PORT     STATE SERVICE
-						80/tcp   open  http
-						| http-enum: 
-						|   /admin/: Possible admin folder
-						|   /admin/login.php: Possible admin folder
-						|_  /img/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
-						2222/tcp open  EtherNetIP-1
-						
-						Nmap scan report for 192.168.28.105
-						Host is up (0.00067s latency).
-						Not shown: 997 closed ports
-						PORT     STATE SERVICE
-						21/tcp   open  ftp
-						23/tcp   open  telnet
-						2222/tcp open  EtherNetIP-1
-						
-						Nmap scan report for 192.168.28.111
-						Host is up (0.00061s latency).
-						Not shown: 997 closed ports
-						PORT     STATE SERVICE
-						80/tcp   open  http
-						| http-enum: 
-						|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
-						|   /images/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
-						|_  /sites/: Potentially interesting folder
-						2222/tcp open  EtherNetIP-1
-						8080/tcp open  http-proxy
-						| http-enum: 
-						|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
-						|   /images/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
-						|_  /js/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
-						
-						Nmap scan report for 192.168.28.120
-						Host is up (0.00060s latency).
-						Not shown: 999 closed ports
-						PORT     STATE SERVICE
-						4242/tcp open  vrml-multi-use
-
 
 		proxychains nmap -Pn -T5 --script banner 192.168.28.97,98,100,105,111,120 --max-rtt-timeout 100ms
 						
-						Nmap scan report for 192.168.28.98
-						Host is up (0.00062s latency).
-						Not shown: 999 closed ports
-						PORT   STATE SERVICE
-						53/tcp open  domain
 						
-						Nmap scan report for 192.168.28.100
-						Host is up (0.00061s latency).
-						Not shown: 998 closed ports
-						PORT     STATE SERVICE
-						80/tcp   open  http
-						2222/tcp open  EtherNetIP-1
-						|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
-						
-						Nmap scan report for 192.168.28.105
-						Host is up (0.00059s latency).
-						Not shown: 997 closed ports
-						PORT     STATE SERVICE
-						21/tcp   open  ftp
-						|_banner: 220 ProFTPD 1.3.5 Server (Debian) [::ffff:192.168.28.105]
-						23/tcp   open  telnet
-						|_banner: \xFF\xFD\x18\xFF\xFD \xFF\xFD#\xFF\xFD'
-						2222/tcp open  EtherNetIP-1
-						|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
-						
-						Nmap scan report for 192.168.28.111
-						Host is up (0.00061s latency).
-						Not shown: 997 closed ports
-						PORT     STATE SERVICE
-						80/tcp   open  http
-						2222/tcp open  EtherNetIP-1
-						|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
-						8080/tcp open  http-proxy
-						
-						Nmap scan report for 192.168.28.120
-						Host is up (0.00063s latency).
-						Not shown: 999 closed ports
-						PORT     STATE SERVICE
-						4242/tcp open  vrml-multi-use
-						|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
-
-
 
 
 
