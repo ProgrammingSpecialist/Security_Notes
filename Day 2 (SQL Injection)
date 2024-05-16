@@ -105,3 +105,9 @@ To Look at databases you don't have direct access 			           ######   POST ME
 
 	How to get the SQL Version
 			http://127.0.0.1:1111/cases/productsCategory.php?category=1 OR 1=1 Union SELECT 1,2,@@version FROM information_schema.columns
+
+
+
+
+
+1 );'
