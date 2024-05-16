@@ -1,0 +1,134 @@
+X86_64 Assembly
+	There are 16 general purpose 64-Bit registers
+		%rax		the first return register
+		%rbp		the base pointer that keeps track of the base of the stack
+		%rsp		the stack pointer that points to the top of the stack
+	You will see arguments passed to functions as something like:
+	[%ebp-0x8]
+
+
+
+
+	X86_64 Assembly - Common Terms
+		Heap			Memory that can be allocated and deallocated
+		Stack			contiguous section of memory used for passing arguments
+		General Register	A multipurpose register that can be used by either programmer or user to store data or a memory location address
+		Control Register	A processor register that changes or controls the behavior of a CPU
+		Flags Register		Contains the current state of the processor
+
+
+
+
+	X86_64 Assembly - Memory Offset
+		There is one instruction pointer register that points to the memory offset of the next instruction in the code segment:
+			64-Bit	Lower 32 bits	Lower 16 bits	Descrition
+			RIP	EIP		IP		Instruction Pointer; holds address for next instruction to be executed
+
+
+
+	X86_64 Assembly - Common Instruction Pointers
+		MOV		move source to destination
+		PUSH		push source onto stack
+		POP		Pop top of stack to destination
+		INC		Increment source by 1
+		DEC		Decrement source by 1
+		ADD		Add source to destination
+		SUB		Subtract source from destination
+		CMP		Compare 2 values by subtracting them and setting the %RFLAGS register. ZeroFlag set means they are the same.
+		JMP		Jump to specified location
+		JLE		Jump if less than or equal
+		JE		Jump if equal
+
+
+
+
+
+
+
+
+
+
+
+
+Example of X86
+
+main:
+	mov rax, 16 	//16 moved into rax 
+	push rax 	//push value of rax (16) onto stack. RSP(stack pointer) is pushed up 8 bytes (64 bits)
+	jmp mem2 	//jump to mem2 memory location
+
+mem1: 			//Subroutine
+	mov rax, 0 	//move 0 (error free) exit code to rax
+	ret 		//return out of code
+
+mem2: 			//Subroutine
+	pop r8 		//pop first value on the stack (16) into r8. RSP falls 8 bytes
+	cmp rax, r8 	//compare rax register value (16) to r8 register value (16)
+	je mem1 	//jump if comparison of mem1 and mem2 has zero bit set (if they are equal) to mem
+
+
+
+
+Example of X86
+
+main:
+	mov rcx, 25 	//store the value 25 in rcx register
+	mov rbx, 62 	//store the value 62 in rbx register
+	jmp mem1 	//jumps to mem1 location
+
+mem1: 			//Subroutine
+	sub rbx, 40 	//subtract 40 from rbx (22)
+	mov rsi, rbx 	//copy rbx value to rsi
+	cmp rcx, rsi 	//compare the values in rcx and rsi
+	jmple mem2 	//jumps to mem2 location if value of rsi is less than or equal to rcx
+
+mem2: 			//Subroutine
+	mov rax, 0 	//store 0 (error free) in rax
+	ret 		//return out of code
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Buffer Overflow
+	Looks for sp
+		stack pointer
+	Find the EIP
+		find the Instructional Pointer that finds the next memory offset that points to the stack pointer
+	Change the EIP
+		Change the Instructional Pointer to point to where your code is located
+
+
+
+
+
+
+
+
+
+
+
+
+
+Portable Executable Patching / Software Analysis
+
+	Perform Debugging and Disassembly
+	
+	Find the Success/Failure
+	
+	Adjust Instructions
+	
+	Apply Patch and Save
+	
+	Execute Patched Binary
