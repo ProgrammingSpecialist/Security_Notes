@@ -4,7 +4,7 @@
 
 	linux ops:	10.50.34.74
 	
-	xfreerdp /u:<username> /v:10.50.21.16 /dynamic-resolution +glyph-cache +clipboard
+	xfreerdp /u:student /v:10.50.21.16 /dynamic-resolution +glyph-cache +clipboard
 
 username:	student
 password:	password
