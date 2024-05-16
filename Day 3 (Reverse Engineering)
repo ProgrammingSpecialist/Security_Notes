@@ -103,13 +103,25 @@ Reverse Engineering Workflow (Software)
 	Static
 		Anything done to look at the software without running it
 		such as:
+			LINUX
 			file command
-			looking at the size of the file	
+			looking at the size of the file
+			strings command
 	
 	Behavioral
 		Sandboxed environment to see how the software works
 		How does the program work
 		Shows what changed when program is run
+
+		WINDOWS
+			RUN FROM POWERSHELL
+
+			Run Ghidra
+				Import file
+				Analyze
+				Search for strings
+						param_1 typically means user input
+		
 		
 	Dynamic
 		Run program in a debugger to step through the file
@@ -122,8 +134,10 @@ Reverse Engineering Workflow (Software)
 			shows pseudocode about how the program works
 	
 	Document Findings
+			
 			Document everything that has been found
-		
+			WINDOWS
+				Look at properties of file
 	
 
 
@@ -141,3 +155,10 @@ Portable Executable Patching / Software Analysis
 	Apply Patch and Save
 	
 	Execute Patched Binary
+
+
+
+
+
+
+
