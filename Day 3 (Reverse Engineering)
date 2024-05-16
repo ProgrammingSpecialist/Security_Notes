@@ -46,10 +46,6 @@ X86_64 Assembly
 
 
 
-
-
-
-
 Example of X86
 
 main:
@@ -90,17 +86,6 @@ mem2: 			//Subroutine
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 Buffer Overflow
 	Looks for sp
 		stack pointer
@@ -113,9 +98,33 @@ Buffer Overflow
 
 
 
+Reverse Engineering Workflow (Software)
 
+	Static
+		Anything done to look at the software without running it
+		such as:
+			file command
+			looking at the size of the file	
+	
+	Behavioral
+		Sandboxed environment to see how the software works
+		How does the program work
+		Shows what changed when program is run
+		
+	Dynamic
+		Run program in a debugger to step through the file
+		See how the program works function to function
+		Main thing is DEBUGGER
 
-
+	Disassembly
+		Ghidra
+			shows how the program looks like on the stack
+			shows pseudocode about how the program works
+	
+	Document Findings
+			Document everything that has been found
+		
+	
 
 
 
