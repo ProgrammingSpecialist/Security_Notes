@@ -20,12 +20,12 @@ STACK #12
 
 Username:	STRE-502-M
 
-Password:	fyoRg030EaYZZiW
+Password:	982JoXYfhqMGhgV
 
-Grey Host jump Box:	10.50.28.200
+Grey Host jump Box:	10.50.23.205
 
 
-ssh -MS /tmp/grey student@10.50.28.200
+ssh -MS /tmp/grey student@10.50.23.205
 	creates a Master Socket
 	creates a socket file named /tmp/grey that will hold all information to get to that ip
 
@@ -37,7 +37,7 @@ ssh -S /tmp/grey [placeholder] -O [options] -D 9050
 
 TO REMOVE TUNNEL
 
-ssh -MS /tmp/grey -O cancel student@10.50.28.200
+ssh -MS /tmp/grey -O cancel student@10.50.23.205
 	will remove /tmp/grey socket file
 	will break down the connection
 
