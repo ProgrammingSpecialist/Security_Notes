@@ -111,6 +111,24 @@ DLL HIJACKING SYNTAX				IF YOU CAN WRITE TO DIRECTORY BUT CANNONT RENAME THE EXE
 
 
 
+Audit Logging
+	Show all audit category settings
+		auditpol /get /category:*
+	Shows system integrity
+		auditpol /get /category:* | findstr /i "success failure"
+
+
+
+Important Microsoft Event IDs
+
+	4624/4625		Successful/failed login
+	
+	4720			Account created
+	
+	4672			Administrative user logged on
+	
+	7045			Service created
+
 
 
 
