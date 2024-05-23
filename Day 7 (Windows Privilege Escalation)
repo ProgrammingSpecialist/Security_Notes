@@ -1,0 +1,94 @@
+														net use * "\\http://live.sysinternals.com" /persistent:yes
+														./sigcheck.exe -m acceptuela [executable]
+
+DLL Search Order
+	Executables check the following locations (in successive order):
+		HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs
+		The directory the the Application was run from
+		The directory specified in in the C+ function GetSystemDirectory()
+		The directory specified in the C+ function GetWindowsDirectory()
+		The current directory
+
+
+
+Windows Integrity Mechanism
+	Integrity Levels
+		Untrusted		Anonymous SID access tokens
+		Low			Everyone SID access token (World)
+		Medium			Authenticated Users
+		High			Administrators
+		System			System services (LocalSystem, LocalService, NetworkService)
+
+
+User Account Control (UAC)
+	Always Notify
+	Notify me only when programs try to make changes to my computer
+	Notify me only when programs try to make changes to my computer (do not dim my desktop)
+	Never notify
+	
+	Checking UAC Settings
+
+		reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+
+
+
+AutoElevate Executables
+	Requested Execution Levels:
+		asInvoker
+		highestAvailable
+
+
+
+Scheduled Tasks & Services
+	Items to evaluate include:
+		Write Permissions
+		Non-Standard Locations
+		Unquoted Executable Paths
+		Vulnerabilities in Executables
+		Permissions to Run As SYSTEM
+		network connections
+		
+	Finding vulnerable Scheduled Tasks
+		
+		schtasks /query /fo LIST /v (Command Line)
+		task scheduler (GUI)
+
+
+
+DLL Hijacking
+	Identify Vulnerability
+	Take advantage of the default search order for DLLs
+	NAME_NOT_FOUND present in executable’s system calls
+	Validate permissions
+	Create and transfer Malicious DLL
+
+
+
+SYNTAX
+	services (GUI)
+	look for evalutaed services from above
+	If no description
+		possible give away
+	properties
+		find at path to executable
+		try to write to the directory it is in
+		open up procmon.exe
+			look for filters to identify dll's
+				Process Name contains [executable]
+				Path contains .dll
+				Result is NAME NOT FOUND
+			run [executable]
+			look for a .dll to place a malicious .dll into
+		IN LINUX
+			msfvenom -p windows/exec CMD='cmd.exe /C "[command you want to run]" > C:\Users\student\Desktop\[command ran].txt' -f dll > SSPICLI.dll
+
+
+
+
+
+
+
+
+
+
+
