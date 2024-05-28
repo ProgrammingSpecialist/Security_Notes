@@ -1,0 +1,37 @@
+												####   https://gtfobins.github.io    ####
+Methodology for Enumerating PRIV ESC
+	sudo -l
+		misconfigured sudo permissions
+			Commands that can access content of files
+				sudo cat
+				sudo head
+				sudo tail
+				sudo less
+					:!sh
+			Commands that can download files
+			Commands that execute other commands
+				sudo vim [file allowed]
+					:!sh
+	
+	sudo cat /etc/sudoers
+		%sudo[group]	ALL[hosts]=(ALL[users]:ALL[groups]) ALL[commands]
+			% means a specific group
+			NO % means a specific user
+	
+	cat /etc/groups
+		who's in what groups
+	
+	SUDOERS MAN PAGE
+		https://linux.die.net/man/5/sudoers
+	
+	SUID
+		What users permissions you are running when opening this file
+		/usr/bin/passwd
+		find / -type f -perm /4000 -ls 2>/dev/null
+		
+	SGID
+		What group permissions are running when opening file
+		find / -type f -perm /2000 -ls 2>/dev/null
+
+	SUID OR SGID
+		find / -type f -perm /6000 -ls 2>/dev/null
