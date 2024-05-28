@@ -13,7 +13,9 @@ Methodology for Enumerating PRIV ESC
 			Commands that execute other commands
 				sudo vim [file allowed]
 					:!sh
-	
+
+	sudo cat /var/log/log1.d* /etc/shadow
+
 	sudo cat /etc/sudoers
 		%sudo[group]	ALL[hosts]=(ALL[users]:ALL[groups]) ALL[commands]
 			% means a specific group
@@ -147,6 +149,41 @@ Methodology for Enumerating PRIV ESC
 			*.*  @192.168.10.254:514                                                    # Old format	@=udp; @@=tcp
 			*.* action(type="omfwd" target="192.168.10.254" port="514" protocol="udp")   # New format
 			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+log on
+sudo -l
+gtfobins.io
+
+
+
+
+
+
+
+
+
 
 
 
