@@ -1,5 +1,6 @@
 												####   https://gtfobins.github.io    ####
 Methodology for Enumerating PRIV ESC
+	****unset HISTFILE****
 	sudo -l
 		misconfigured sudo permissions
 			Commands that can access content of files
@@ -19,7 +20,6 @@ Methodology for Enumerating PRIV ESC
 			NO % means a specific user
 	
 	cat /etc/groups
-		who's in what groups
 	
 	SUDOERS MAN PAGE
 		https://linux.die.net/man/5/sudoers
@@ -35,3 +35,120 @@ Methodology for Enumerating PRIV ESC
 
 	SUID OR SGID
 		find / -type f -perm /6000 -ls 2>/dev/null
+
+
+	SCHEDULED TASKS
+												####   https://crontab.guru/    ####
+		cat /etc/crontab
+		cat /etc/cron.*
+			cat /etc/cron.d
+			cat /etc/cron.daily
+			cat /etc/cron.hourly
+			cat /etc/cron.weekly
+			cat /etc/cron.monthly
+		cat /var/spool
+		ls -lisa /var/spool/cron/crontabs
+		cron -l 
+			list cronjobs for current user
+		cron -l -u 
+			list cronjob for specific user
+		cron -e 
+			edit cronjobs for current user
+		cron -r 
+			remove cronjob for current user
+	
+
+	WORLD-WRITABLE FILES AND DIRECTORIES
+		/tmp
+		/var/tmp	
+		find / -type f -o -type d -perm /2 2>/dev/null | grep tmp
+			finds files or directories that can be accessed or modified by anyone
+
+
+	FIGURE OUT INIT TYPE
+		ps -p 1
+			shows what INIT system you are running
+
+
+
+	Logs for Covering Tracks
+		ls -latr /var/log
+		Logs typically housed in /var/log & useful logs:		
+			auth.log/secure			Logins/authentications
+			lastlog				Each users' last successful login time
+			
+			btmp				Bad login attempts
+			
+			sulog				Usage of SU command
+			
+			utmp				Currently logged in users (W command)
+			
+			wtmp				Permanent record on user on/off
+	
+
+
+	WORKING WITH LOGS
+		file /var/log/wtmp
+			find /var/log -type f -mmin -10 2> /dev/null
+
+	Cleaning The Logs
+		Before we start cleaning, save the INODE!
+			Affect on the inode of using mv VS cp VS cat
+				cp always changees the inode
+				mv only changes the inode if you move drives
+		Know what we are removing (Entry times? IP? Whole file? Etc.)
+		
+
+	Cleaning The Logs (Basic)
+		Get rid of it
+			rm -rf /var/log/...
+		Clear It
+			cat /dev/null > /var/log/...
+			echo > /var/log/...
+
+	Cleaning The Logs (Precise)
+		Always work off a backup!
+			GREP (Remove)
+				egrep -v '10:49*| 15:15:15' auth.log > auth.log2; cat auth.log2 > auth.log; rm auth.log2
+			SED (Replace)
+				cat auth.log > auth.log2; sed -i 's/10.16.10.93/136.132.1.1/g' auth.log2; cat auth.log2 > auth.log
+
+	STAT FILE BEFORE YOU TIMESTAMP OR MESS WITH FILE
+
+	Timestomp
+
+		Access: updated when opened or used (grep, ls, cat, etc)
+		
+		Modify: update content of file or saved
+		
+		Change: file attribute change, file modified, moved, owner, permission
+
+		SYNTAX
+			touch -c -t 201603051015 1.txt   # Explicit
+			touch -r 3.txt 1.txt    # Reference
+				gives accurate timestamps instead of zeroing out the seconds field
+
+
+
+	Remote Logging
+		Check the config!
+		/etc/rsyslog.d/*
+			NEWER VERSION for RSYSLOG
+		/etc/rsyslog.conf
+			OLDER VERSION OF RSYSLOG
+			grep "IncludeConfig" /etc/rsyslog.conf
+		READING RSYSLOG
+			<facility>.<priority>
+
+		RSYSLOG SYNTAX
+			kern.*                                                # All kernel messages, all severities
+			mail.crit
+			cron.!info,!debug
+			*.*  @192.168.10.254:514                                                    # Old format	@=udp; @@=tcp
+			*.* action(type="omfwd" target="192.168.10.254" port="514" protocol="udp")   # New format
+			
+
+
+
+
+	
