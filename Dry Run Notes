@@ -1,0 +1,71 @@
+                                                                                                        INPUT ALL COMMANDS AND OUTPUTS INTO A TEXT FILE FOR FUTURE REFERENCE
+
+
+
+###scan the IP
+        nmap -Pn -T5 10.50.20.96
+        nmap -Pn -T5 -p 80 --script=banner,http-enum 10.50.20.96
+
+
+
+###Look at the website
+        firefox
+        10.50.20.96
+        10.50.20.96/scripts/
+                Download file and look at it
+                Open all links
+                If there is no /uploads from http-enum UNABLE to upload malware
+                if there is a username and password login field use POST SQL injection (tom' OR 1='1)
+                if there are products use UNION SELECTION method
+                if you see "file to read" use directory traversal
+                        look for ../../../../etc/hosts        OR        ../../../../etc/passwd
+
+
+
+###CHECK CREDENTIALS
+        verify encoding of credentials
+                BASE64
+                ROT13
+
+
+
+###SSH ONTO BOX
+        ssh user2@10.50.20.96
+                Enumerate file system
+
+
+
+###Scan Next Network
+        for i in {1..254} ;do (ping -c 1 192.168.28.$i | grep "bytes from" &2>/dev/null) ;done
+
+
+
+###Create a tunnel and ssh into box
+        ssh -MS /tmp/initial_box user2@10.50.20.96
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
