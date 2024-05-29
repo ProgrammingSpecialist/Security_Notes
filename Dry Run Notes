@@ -76,7 +76,9 @@
                         
 
 
-###
+###SSH into box
+        ssh -p 2222 Aaron@127.0.0.1
+        
 
 
 
